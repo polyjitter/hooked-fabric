@@ -10,4 +10,3 @@ fun init() {
 
     println("Hello Fabric world!")
 }
-
