@@ -5,6 +5,7 @@ package polyjitter.hooked_fabric.common.items
  * Thanks for all your hard work! ~ taciturasa/polyjitter
  */
 class ItemHook : Item {
+
     override fun use(world : World, playerEntity : PlayerEntity, hand : Hand) : TypedActionResult<ItemStack> {
         if(playerEntity.isSneaking) {
             val type = getType(playerEntity.getHeldItem(hand))
@@ -20,6 +21,11 @@ class ItemHook : Item {
         }
         return super.onItemRightClick(worldIn, playerEntity, hand)
     }
+
+    override fun addTooltip(itemStack : ItemStack, world : World, tooltip : List<Text>, tooltipContext : TooltipContext) {
+        tooltip.add(TranslatableText("item.hooked_fabric.hook.general_help"))
+    }
+
     companion object {
         fun isInhibited(stack: ItemStack): Boolean {
             return (stack.nbt["inhibited"] as? NBTTagByte)?.byte == 1.toByte()
